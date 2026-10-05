@@ -4,178 +4,194 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#6c4cff">
-<title>THX • Gerador EAN-13</title>
+<title>THX • GTIN Mercado Livre</title>
 <style>
-:root{
-  --purple:#6c4cff;
-  --purple2:#8b6cff;
-  --ink:#1d2030;
-  --muted:#73778a;
-  --line:#e9e9f2;
-  --bg:#fbfbfe;
-  --soft:#f5f3ff;
-  --green:#16a36a;
-}
+:root{--purple:#6c4cff;--purple2:#8b6cff;--ink:#1d2030;--muted:#73778a;--line:#e9e9f2;--bg:#fbfbfe;--soft:#f5f3ff;--green:#169968;--amber:#a86a00;--amberbg:#fff8e8}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 88% 8%, rgba(108,76,255,.10), transparent 28%),
-    radial-gradient(circle at 8% 92%, rgba(75,211,186,.08), transparent 30%),
-    var(--bg);
-}
-.page{max-width:1180px;margin:0 auto;padding:28px 24px 56px}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:76px}
+body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 88% 8%,rgba(108,76,255,.10),transparent 28%),radial-gradient(circle at 8% 92%,rgba(75,211,186,.08),transparent 30%),var(--bg)}
+.page{max-width:1180px;margin:auto;padding:28px 24px 56px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:62px}
 .brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.03em}
-.brandmark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple2));box-shadow:0 10px 26px rgba(108,76,255,.25);font-size:13px;letter-spacing:-.04em}
+.brandmark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple2));box-shadow:0 10px 26px rgba(108,76,255,.25);font-size:13px}
 .brand span{font-size:17px}
-.topnote{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:999px;box-shadow:0 5px 20px rgba(31,25,75,.04)}
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,560px);gap:70px;align-items:start}
-.copy{padding-top:26px}
+.topnote{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:999px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(430px,560px);gap:70px;align-items:start}
+.copy{padding-top:22px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--purple);font-weight:800;font-size:13px;margin-bottom:18px}
 .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--purple);box-shadow:0 0 0 5px rgba(108,76,255,.10)}
-h1{font-size:clamp(38px,5vw,58px);line-height:1.03;letter-spacing:-.055em;margin:0 0 20px;max-width:660px}
-.lead{font-size:19px;line-height:1.65;color:var(--muted);max-width:610px;margin:0}
-.features{margin:31px 0 0;padding:0;list-style:none;display:grid;gap:14px}
-.features li{display:flex;align-items:center;gap:11px;color:#5e6274;font-size:14px}
-.check{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#eaf9f3;color:var(--green);font-weight:900;font-size:12px}
-.card{background:rgba(255,255,255,.90);backdrop-filter:blur(14px);border:1px solid rgba(228,227,240,.92);border-radius:28px;padding:30px;box-shadow:0 28px 80px rgba(42,31,99,.11)}
-.cardTitle{font-size:15px;font-weight:800;margin-bottom:7px}
-.cardSub{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:24px}
-.fieldLabel{display:block;font-size:13px;font-weight:750;margin-bottom:9px}
-.stepper{display:grid;grid-template-columns:54px 1fr 54px;gap:9px;align-items:center}
-.stepBtn{height:54px;border-radius:15px;border:1px solid var(--line);background:#fff;color:var(--purple);font-size:24px;font-weight:600;cursor:pointer;transition:.18s ease}
-.stepBtn:hover{border-color:#cfc8ff;background:var(--soft);transform:translateY(-1px)}
-#qtd{height:54px;width:100%;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--ink);font-size:20px;font-weight:800;text-align:center;outline:none;appearance:textfield}
+h1{font-size:clamp(38px,5vw,56px);line-height:1.03;letter-spacing:-.055em;margin:0 0 20px}
+.lead{font-size:18px;line-height:1.65;color:var(--muted);max-width:620px;margin:0}
+.features{margin:30px 0 0;padding:0;list-style:none;display:grid;gap:14px}
+.features li{display:flex;align-items:flex-start;gap:11px;color:#5e6274;font-size:14px;line-height:1.45}
+.check{width:21px;height:21px;flex:0 0 21px;border-radius:50%;display:grid;place-items:center;background:#eaf9f3;color:var(--green);font-weight:900;font-size:12px}
+.card{background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border:1px solid rgba(228,227,240,.95);border-radius:28px;padding:30px;box-shadow:0 28px 80px rgba(42,31,99,.11)}
+.cardTitle{font-size:18px;font-weight:850;margin-bottom:7px}
+.cardSub{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:22px}
+.notice{padding:12px 13px;border-radius:14px;background:var(--amberbg);border:1px solid #f4dfaa;color:#7f5a0a;font-size:12px;line-height:1.5;margin-bottom:20px}
+.field{margin-bottom:15px}
+label{display:block;font-size:12px;font-weight:800;margin-bottom:8px}
+input[type=text],input[type=number]{width:100%;height:52px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font-size:16px;font-weight:750;outline:none;padding:0 14px}
+input:focus{border-color:#b4a7ff;box-shadow:0 0 0 4px rgba(108,76,255,.09)}
+.inline{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.stepper{display:grid;grid-template-columns:48px 1fr 48px;gap:8px}
+.stepBtn{height:52px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--purple);font-size:23px;font-weight:700;cursor:pointer}
+.stepBtn:hover{background:var(--soft)}
+#qtd{text-align:center;padding:0;appearance:textfield}
 #qtd::-webkit-inner-spin-button,#qtd::-webkit-outer-spin-button{appearance:none;margin:0}
-#qtd:focus{border-color:#b4a7ff;box-shadow:0 0 0 4px rgba(108,76,255,.09)}
-.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
-.quick button{border:1px solid var(--line);background:#fff;color:#6b6f80;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:750;cursor:pointer;transition:.18s ease}
+.quick{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.quick button{border:1px solid var(--line);background:#fff;color:#6b6f80;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800;cursor:pointer}
 .quick button:hover,.quick button.active{background:var(--soft);border-color:#d2ccff;color:var(--purple)}
-.generate{width:100%;height:58px;border:0;border-radius:16px;margin-top:23px;background:linear-gradient(135deg,var(--purple),#8063ff);color:#fff;font-weight:850;font-size:16px;cursor:pointer;box-shadow:0 15px 30px rgba(108,76,255,.23);transition:.18s ease;display:flex;align-items:center;justify-content:center;gap:9px}
-.generate:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(108,76,255,.28)}
-.generate:active{transform:translateY(0)}
-.spark{font-size:18px}
+.confirm{display:flex;align-items:flex-start;gap:9px;margin:16px 0 0;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fafafe}
+.confirm input{margin-top:2px;accent-color:var(--purple)}
+.confirm span{font-size:12px;color:#666a7d;line-height:1.45}
+.generate{width:100%;height:58px;border:0;border-radius:16px;margin-top:18px;background:linear-gradient(135deg,var(--purple),#8063ff);color:#fff;font-weight:850;font-size:15px;cursor:pointer;box-shadow:0 15px 30px rgba(108,76,255,.23)}
+.generate:hover{transform:translateY(-1px)}
+.generate:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+.error{display:none;margin-top:13px;padding:11px 12px;border-radius:12px;background:#fff0f1;color:#a33b45;font-size:12px;line-height:1.45}
 .resultWrap{margin-top:18px;display:none}
 .resultHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
 .resultHead strong{font-size:13px}
-.copyAll{border:0;background:transparent;color:var(--purple);font-size:12px;font-weight:800;cursor:pointer;padding:6px}
-.results{max-height:365px;overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}
-.eanRow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;border-bottom:1px solid #f0f0f5}
+.copyAll{border:0;background:transparent;color:var(--purple);font-size:12px;font-weight:800;cursor:pointer}
+.results{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}
+.eanRow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 13px;border-bottom:1px solid #f0f0f5}
 .eanRow:last-child{border-bottom:0}
-.eanNo{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:15px;font-weight:800;letter-spacing:.05em}
-.copyOne{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#7a7e8f;cursor:pointer;font-size:15px}
-.copyOne:hover{color:var(--purple);background:var(--soft)}
-.warning{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;line-height:1.5;color:#999caf}
-.footer{text-align:center;color:#a0a2b0;font-size:11px;margin-top:86px}
-.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#1c1f2b;color:#fff;padding:11px 16px;border-radius:999px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:.22s ease;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.eanNo{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:14px;font-weight:850;letter-spacing:.05em}
+.status{font-size:10px;color:var(--green);font-weight:800;margin-top:3px}
+.copyOne{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#7a7e8f;cursor:pointer}
+.actions{display:flex;gap:9px;margin-top:13px;flex-wrap:wrap}
+.linkBtn{flex:1;min-width:190px;display:flex;align-items:center;justify-content:center;height:44px;border-radius:13px;text-decoration:none;font-size:12px;font-weight:850;border:1px solid #d8d2ff;color:var(--purple);background:var(--soft)}
+.warning{margin-top:16px;padding-top:15px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:#9699aa}
+.footer{text-align:center;color:#a0a2b0;font-size:11px;margin-top:72px}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#1c1f2b;color:#fff;padding:11px 16px;border-radius:999px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:.22s ease}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:900px){
-  .page{padding:20px 18px 40px}
-  .topbar{margin-bottom:38px}
-  .hero{grid-template-columns:1fr;gap:34px}
-  .copy{padding-top:0}
-  h1{font-size:42px}
-  .card{padding:24px;border-radius:24px}
-  .footer{margin-top:50px}
-}
-@media(max-width:520px){
-  .topnote{display:none}
-  h1{font-size:36px}
-  .lead{font-size:16px}
-  .features{margin-top:24px}
-  .card{padding:20px;border-radius:22px}
-  .stepper{grid-template-columns:50px 1fr 50px}
-  .stepBtn,#qtd{height:50px}
-  .quick{justify-content:center}
-}
+@media(max-width:900px){.page{padding:20px 18px 40px}.topbar{margin-bottom:38px}.hero{grid-template-columns:1fr;gap:34px}.copy{padding-top:0}.card{padding:24px}.footer{margin-top:48px}}
+@media(max-width:520px){.topnote{display:none}h1{font-size:36px}.lead{font-size:16px}.card{padding:20px;border-radius:22px}.inline{grid-template-columns:1fr}.quick{justify-content:center}}
 </style>
 </head>
 <body>
 <main class="page">
-  <header class="topbar">
-    <div class="brand"><div class="brandmark">THX</div><span>EAN Tools</span></div>
-    <div class="topnote">Gerador simples • EAN-13</div>
-  </header>
+<header class="topbar">
+  <div class="brand"><div class="brandmark">THX</div><span>GTIN Tools</span></div>
+  <div class="topnote">Mercado Livre • fluxo correto</div>
+</header>
 
-  <section class="hero">
-    <div class="copy">
-      <div class="eyebrow">Ferramenta gratuita</div>
-      <h1>Gerador de Código EAN-13</h1>
-      <p class="lead">Escolha quantos códigos você precisa e gere tudo de uma vez, em segundos.</p>
-      <ul class="features">
-        <li><span class="check">✓</span>Sem cadastro</li>
-        <li><span class="check">✓</span>Geração instantânea</li>
-        <li><span class="check">✓</span>Dígito verificador calculado automaticamente</li>
-      </ul>
+<section class="hero">
+  <div class="copy">
+    <div class="eyebrow">GTIN sem gambiarra</div>
+    <h1>Código universal para Mercado Livre</h1>
+    <p class="lead">Esta versão não inventa EAN aleatório e chama de “limpo”. Ela calcula GTIN-13 somente dentro de um prefixo GS1 que pertença à sua empresa.</p>
+    <ul class="features">
+      <li><span class="check">✓</span><span>Calcula o dígito verificador corretamente.</span></li>
+      <li><span class="check">✓</span><span>Gera uma sequência sem duplicados dentro do seu prefixo.</span></li>
+      <li><span class="check">✓</span><span>Depois, confira o GTIN no validador oficial do Mercado Livre antes de publicar.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">Gerar GTIN-13 com prefixo GS1</div>
+    <div class="cardSub">Use somente um prefixo GS1 licenciado para sua empresa. Sem prefixo oficial, não existe gerador que possa garantir código “limpo” aceito pelo Mercado Livre.</div>
+
+    <div class="notice"><strong>Importante:</strong> checksum correto não prova que o GTIN está registrado, ativo ou vinculado ao produto certo. O Mercado Livre pode validar marca, categoria e vínculo do identificador.</div>
+
+    <div class="field">
+      <label for="prefixo">Prefixo GS1 da empresa</label>
+      <input id="prefixo" type="text" inputmode="numeric" maxlength="11" placeholder="Ex.: 7891234">
     </div>
 
-    <div class="card">
-      <div class="cardTitle">Quantos códigos deseja gerar?</div>
-      <div class="cardSub">Informe a quantidade. Você pode gerar de 1 a 1.000 códigos por vez.</div>
-
-      <label class="fieldLabel" for="qtd">Quantidade de códigos</label>
-      <div class="stepper">
-        <button class="stepBtn" id="menos" aria-label="Diminuir quantidade">−</button>
-        <input id="qtd" type="number" min="1" max="1000" value="10" inputmode="numeric">
-        <button class="stepBtn" id="mais" aria-label="Aumentar quantidade">+</button>
+    <div class="inline">
+      <div class="field">
+        <label for="inicio">Referência inicial do item</label>
+        <input id="inicio" type="number" min="0" value="1">
       </div>
-      <div class="quick" aria-label="Quantidades rápidas">
-        <button data-q="1">1</button>
-        <button data-q="5">5</button>
-        <button data-q="10" class="active">10</button>
-        <button data-q="20">20</button>
-        <button data-q="50">50</button>
-        <button data-q="100">100</button>
-      </div>
-
-      <button class="generate" id="gerar"><span class="spark">✦</span> Gerar códigos EAN-13</button>
-
-      <div class="resultWrap" id="resultWrap">
-        <div class="resultHead">
-          <strong id="resultLabel">Códigos gerados</strong>
-          <button class="copyAll" id="copiarTodos">Copiar todos</button>
+      <div class="field">
+        <label for="qtd">Quantidade</label>
+        <div class="stepper">
+          <button class="stepBtn" id="menos" aria-label="Diminuir">−</button>
+          <input id="qtd" type="number" min="1" max="1000" value="10">
+          <button class="stepBtn" id="mais" aria-label="Aumentar">+</button>
         </div>
-        <div class="results" id="resultado"></div>
       </div>
-
-      <div class="warning">Os números gerados têm estrutura EAN-13 e checksum correto, mas não representam registro oficial GS1.</div>
     </div>
-  </section>
 
-  <div class="footer">THX EAN Tools • simples, rápido e direto</div>
+    <div class="quick">
+      <button data-q="1">1</button><button data-q="5">5</button><button data-q="10" class="active">10</button><button data-q="20">20</button><button data-q="50">50</button><button data-q="100">100</button>
+    </div>
+
+    <label class="confirm">
+      <input type="checkbox" id="confirmo">
+      <span>Confirmo que o prefixo informado foi licenciado pela GS1 para minha empresa e que os GTINs serão cadastrados/alocados corretamente antes do uso comercial.</span>
+    </label>
+
+    <button class="generate" id="gerar" disabled>Gerar sequência GTIN-13</button>
+    <div class="error" id="erro"></div>
+
+    <div class="resultWrap" id="resultWrap">
+      <div class="resultHead">
+        <strong id="resultLabel">Códigos gerados</strong>
+        <button class="copyAll" id="copiarTodos">Copiar todos</button>
+      </div>
+      <div class="results" id="resultado"></div>
+      <div class="actions">
+        <a class="linkBtn" href="https://www.mercadolivre.com.br/validador-codigos-universais" target="_blank" rel="noopener">Abrir validador oficial do Mercado Livre ↗</a>
+      </div>
+    </div>
+
+    <div class="warning">A ferramenta calcula a estrutura GTIN-13. Ela não consulta a base GS1 nem garante aceitação do Mercado Livre. Para produto de fabricante, use o GTIN original. Para produto realmente sem GTIN, use a opção de ausência quando a categoria do Mercado Livre permitir.</div>
+  </div>
+</section>
+
+<div class="footer">THX GTIN Tools • cálculo correto, sem prometer EAN “virgem” inventado</div>
 </main>
 <div class="toast" id="toast">Copiado</div>
 
 <script>
 let codigos=[];
 const qtd=document.getElementById('qtd');
+const prefixo=document.getElementById('prefixo');
+const inicio=document.getElementById('inicio');
+const confirmo=document.getElementById('confirmo');
+const gerarBtn=document.getElementById('gerar');
 const quick=[...document.querySelectorAll('.quick button')];
+
 function clamp(v){return Math.max(1,Math.min(1000,Number(v)||1))}
-function syncQuick(){quick.forEach(b=>b.classList.toggle('active',Number(b.dataset.q)===Number(qtd.value)))}
-function setQtd(v){qtd.value=clamp(v);syncQuick()}
-function dv(base){let s=0;for(let i=0;i<12;i++)s+=Number(base[i])*(i%2===0?1:3);return String((10-(s%10))%10)}
-function gerarBase(){const a=new Uint32Array(12);crypto.getRandomValues(a);let s='';for(let i=0;i<12;i++)s+=String(a[i]%10);return s}
-function gerarEAN(){const b=gerarBase();return b+dv(b)}
-function toast(txt='Copiado'){const t=document.getElementById('toast');t.textContent=txt;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),1200)}
+function setQtd(v){qtd.value=clamp(v);quick.forEach(b=>b.classList.toggle('active',Number(b.dataset.q)===Number(qtd.value)))}
+function dv(base12){let s=0;for(let i=0;i<12;i++)s+=Number(base12[i])*(i%2===0?1:3);return String((10-(s%10))%10)}
+function onlyDigits(v){return String(v||'').replace(/\D/g,'')}
+function toast(txt='Copiado'){const t=document.getElementById('toast');t.textContent=txt;t.classList.add('show');clearTimeout(window.__t);window.__t=setTimeout(()=>t.classList.remove('show'),1200)}
 async function copyText(txt){try{await navigator.clipboard.writeText(txt)}catch{const x=document.createElement('textarea');x.value=txt;document.body.appendChild(x);x.select();document.execCommand('copy');x.remove()}toast()}
-function gerar(){
-  const n=clamp(qtd.value);setQtd(n);
-  const set=new Set();while(set.size<n)set.add(gerarEAN());codigos=[...set];
-  document.getElementById('resultLabel').textContent=`${n} código${n>1?'s':''} gerado${n>1?'s':''}`;
-  document.getElementById('resultado').innerHTML=codigos.map(c=>`<div class="eanRow"><span class="eanNo">${c}</span><button class="copyOne" data-code="${c}" title="Copiar">⧉</button></div>`).join('');
-  document.getElementById('resultWrap').style.display='block';
-}
+function fail(msg){const e=document.getElementById('erro');e.textContent=msg;e.style.display='block';document.getElementById('resultWrap').style.display='none'}
+function clearFail(){document.getElementById('erro').style.display='none'}
+
+confirmo.onchange=()=>gerarBtn.disabled=!confirmo.checked;
+prefixo.oninput=()=>prefixo.value=onlyDigits(prefixo.value).slice(0,11);
 document.getElementById('menos').onclick=()=>setQtd(Number(qtd.value)-1);
 document.getElementById('mais').onclick=()=>setQtd(Number(qtd.value)+1);
 quick.forEach(b=>b.onclick=()=>setQtd(Number(b.dataset.q)));
-qtd.oninput=syncQuick;
 qtd.onblur=()=>setQtd(qtd.value);
-document.getElementById('gerar').onclick=gerar;
+
+gerarBtn.onclick=()=>{
+  clearFail();
+  const p=onlyDigits(prefixo.value);
+  const n=clamp(qtd.value);
+  const start=Math.max(0,Math.floor(Number(inicio.value)||0));
+
+  if(p.length<6 || p.length>11) return fail('Informe um prefixo GS1 entre 6 e 11 dígitos.');
+  const refLen=12-p.length;
+  const capacidade=Math.pow(10,refLen);
+  if(start+n>capacidade) return fail('A quantidade ultrapassa a capacidade restante para esse tamanho de prefixo e referência.');
+
+  codigos=[];
+  for(let i=0;i<n;i++){
+    const ref=String(start+i).padStart(refLen,'0');
+    const base=p+ref;
+    codigos.push(base+dv(base));
+  }
+
+  document.getElementById('resultLabel').textContent=n+' GTIN'+(n>1?'s':'')+' calculado'+(n>1?'s':'');
+  document.getElementById('resultado').innerHTML=codigos.map(c=>'<div class="eanRow"><div><div class="eanNo">'+c+'</div><div class="status">✓ checksum válido • registro GS1 não verificado</div></div><button class="copyOne" data-code="'+c+'" title="Copiar">⧉</button></div>').join('');
+  document.getElementById('resultWrap').style.display='block';
+};
+
 document.getElementById('copiarTodos').onclick=()=>codigos.length&&copyText(codigos.join('\n'));
 document.getElementById('resultado').onclick=e=>{const b=e.target.closest('[data-code]');if(b)copyText(b.dataset.code)};
 </script>
