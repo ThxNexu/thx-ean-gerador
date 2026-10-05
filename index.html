@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6c4cff">
+<title>THX • Gerador EAN-13</title>
+<style>
+:root{
+  --purple:#6c4cff;
+  --purple2:#8b6cff;
+  --ink:#1d2030;
+  --muted:#73778a;
+  --line:#e9e9f2;
+  --bg:#fbfbfe;
+  --soft:#f5f3ff;
+  --green:#16a36a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 88% 8%, rgba(108,76,255,.10), transparent 28%),
+    radial-gradient(circle at 8% 92%, rgba(75,211,186,.08), transparent 30%),
+    var(--bg);
+}
+.page{max-width:1180px;margin:0 auto;padding:28px 24px 56px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:76px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.03em}
+.brandmark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple2));box-shadow:0 10px 26px rgba(108,76,255,.25);font-size:13px;letter-spacing:-.04em}
+.brand span{font-size:17px}
+.topnote{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:999px;box-shadow:0 5px 20px rgba(31,25,75,.04)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,560px);gap:70px;align-items:start}
+.copy{padding-top:26px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--purple);font-weight:800;font-size:13px;margin-bottom:18px}
+.eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--purple);box-shadow:0 0 0 5px rgba(108,76,255,.10)}
+h1{font-size:clamp(38px,5vw,58px);line-height:1.03;letter-spacing:-.055em;margin:0 0 20px;max-width:660px}
+.lead{font-size:19px;line-height:1.65;color:var(--muted);max-width:610px;margin:0}
+.features{margin:31px 0 0;padding:0;list-style:none;display:grid;gap:14px}
+.features li{display:flex;align-items:center;gap:11px;color:#5e6274;font-size:14px}
+.check{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#eaf9f3;color:var(--green);font-weight:900;font-size:12px}
+.card{background:rgba(255,255,255,.90);backdrop-filter:blur(14px);border:1px solid rgba(228,227,240,.92);border-radius:28px;padding:30px;box-shadow:0 28px 80px rgba(42,31,99,.11)}
+.cardTitle{font-size:15px;font-weight:800;margin-bottom:7px}
+.cardSub{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:24px}
+.fieldLabel{display:block;font-size:13px;font-weight:750;margin-bottom:9px}
+.stepper{display:grid;grid-template-columns:54px 1fr 54px;gap:9px;align-items:center}
+.stepBtn{height:54px;border-radius:15px;border:1px solid var(--line);background:#fff;color:var(--purple);font-size:24px;font-weight:600;cursor:pointer;transition:.18s ease}
+.stepBtn:hover{border-color:#cfc8ff;background:var(--soft);transform:translateY(-1px)}
+#qtd{height:54px;width:100%;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--ink);font-size:20px;font-weight:800;text-align:center;outline:none;appearance:textfield}
+#qtd::-webkit-inner-spin-button,#qtd::-webkit-outer-spin-button{appearance:none;margin:0}
+#qtd:focus{border-color:#b4a7ff;box-shadow:0 0 0 4px rgba(108,76,255,.09)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.quick button{border:1px solid var(--line);background:#fff;color:#6b6f80;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:750;cursor:pointer;transition:.18s ease}
+.quick button:hover,.quick button.active{background:var(--soft);border-color:#d2ccff;color:var(--purple)}
+.generate{width:100%;height:58px;border:0;border-radius:16px;margin-top:23px;background:linear-gradient(135deg,var(--purple),#8063ff);color:#fff;font-weight:850;font-size:16px;cursor:pointer;box-shadow:0 15px 30px rgba(108,76,255,.23);transition:.18s ease;display:flex;align-items:center;justify-content:center;gap:9px}
+.generate:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(108,76,255,.28)}
+.generate:active{transform:translateY(0)}
+.spark{font-size:18px}
+.resultWrap{margin-top:18px;display:none}
+.resultHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.resultHead strong{font-size:13px}
+.copyAll{border:0;background:transparent;color:var(--purple);font-size:12px;font-weight:800;cursor:pointer;padding:6px}
+.results{max-height:365px;overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}
+.eanRow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;border-bottom:1px solid #f0f0f5}
+.eanRow:last-child{border-bottom:0}
+.eanNo{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:15px;font-weight:800;letter-spacing:.05em}
+.copyOne{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#7a7e8f;cursor:pointer;font-size:15px}
+.copyOne:hover{color:var(--purple);background:var(--soft)}
+.warning{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;line-height:1.5;color:#999caf}
+.footer{text-align:center;color:#a0a2b0;font-size:11px;margin-top:86px}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#1c1f2b;color:#fff;padding:11px 16px;border-radius:999px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:.22s ease;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){
+  .page{padding:20px 18px 40px}
+  .topbar{margin-bottom:38px}
+  .hero{grid-template-columns:1fr;gap:34px}
+  .copy{padding-top:0}
+  h1{font-size:42px}
+  .card{padding:24px;border-radius:24px}
+  .footer{margin-top:50px}
+}
+@media(max-width:520px){
+  .topnote{display:none}
+  h1{font-size:36px}
+  .lead{font-size:16px}
+  .features{margin-top:24px}
+  .card{padding:20px;border-radius:22px}
+  .stepper{grid-template-columns:50px 1fr 50px}
+  .stepBtn,#qtd{height:50px}
+  .quick{justify-content:center}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="topbar">
+    <div class="brand"><div class="brandmark">THX</div><span>EAN Tools</span></div>
+    <div class="topnote">Gerador simples • EAN-13</div>
+  </header>
+
+  <section class="hero">
+    <div class="copy">
+      <div class="eyebrow">Ferramenta gratuita</div>
+      <h1>Gerador de Código EAN-13</h1>
+      <p class="lead">Escolha quantos códigos você precisa e gere tudo de uma vez, em segundos.</p>
+      <ul class="features">
+        <li><span class="check">✓</span>Sem cadastro</li>
+        <li><span class="check">✓</span>Geração instantânea</li>
+        <li><span class="check">✓</span>Dígito verificador calculado automaticamente</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="cardTitle">Quantos códigos deseja gerar?</div>
+      <div class="cardSub">Informe a quantidade. Você pode gerar de 1 a 1.000 códigos por vez.</div>
+
+      <label class="fieldLabel" for="qtd">Quantidade de códigos</label>
+      <div class="stepper">
+        <button class="stepBtn" id="menos" aria-label="Diminuir quantidade">−</button>
+        <input id="qtd" type="number" min="1" max="1000" value="10" inputmode="numeric">
+        <button class="stepBtn" id="mais" aria-label="Aumentar quantidade">+</button>
+      </div>
+      <div class="quick" aria-label="Quantidades rápidas">
+        <button data-q="1">1</button>
+        <button data-q="5">5</button>
+        <button data-q="10" class="active">10</button>
+        <button data-q="20">20</button>
+        <button data-q="50">50</button>
+        <button data-q="100">100</button>
+      </div>
+
+      <button class="generate" id="gerar"><span class="spark">✦</span> Gerar códigos EAN-13</button>
+
+      <div class="resultWrap" id="resultWrap">
+        <div class="resultHead">
+          <strong id="resultLabel">Códigos gerados</strong>
+          <button class="copyAll" id="copiarTodos">Copiar todos</button>
+        </div>
+        <div class="results" id="resultado"></div>
+      </div>
+
+      <div class="warning">Os números gerados têm estrutura EAN-13 e checksum correto, mas não representam registro oficial GS1.</div>
+    </div>
+  </section>
+
+  <div class="footer">THX EAN Tools • simples, rápido e direto</div>
+</main>
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+let codigos=[];
+const qtd=document.getElementById('qtd');
+const quick=[...document.querySelectorAll('.quick button')];
+function clamp(v){return Math.max(1,Math.min(1000,Number(v)||1))}
+function syncQuick(){quick.forEach(b=>b.classList.toggle('active',Number(b.dataset.q)===Number(qtd.value)))}
+function setQtd(v){qtd.value=clamp(v);syncQuick()}
+function dv(base){let s=0;for(let i=0;i<12;i++)s+=Number(base[i])*(i%2===0?1:3);return String((10-(s%10))%10)}
+function gerarBase(){const a=new Uint32Array(12);crypto.getRandomValues(a);let s='';for(let i=0;i<12;i++)s+=String(a[i]%10);return s}
+function gerarEAN(){const b=gerarBase();return b+dv(b)}
+function toast(txt='Copiado'){const t=document.getElementById('toast');t.textContent=txt;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),1200)}
+async function copyText(txt){try{await navigator.clipboard.writeText(txt)}catch{const x=document.createElement('textarea');x.value=txt;document.body.appendChild(x);x.select();document.execCommand('copy');x.remove()}toast()}
+function gerar(){
+  const n=clamp(qtd.value);setQtd(n);
+  const set=new Set();while(set.size<n)set.add(gerarEAN());codigos=[...set];
+  document.getElementById('resultLabel').textContent=`${n} código${n>1?'s':''} gerado${n>1?'s':''}`;
+  document.getElementById('resultado').innerHTML=codigos.map(c=>`<div class="eanRow"><span class="eanNo">${c}</span><button class="copyOne" data-code="${c}" title="Copiar">⧉</button></div>`).join('');
+  document.getElementById('resultWrap').style.display='block';
+}
+document.getElementById('menos').onclick=()=>setQtd(Number(qtd.value)-1);
+document.getElementById('mais').onclick=()=>setQtd(Number(qtd.value)+1);
+quick.forEach(b=>b.onclick=()=>setQtd(Number(b.dataset.q)));
+qtd.oninput=syncQuick;
+qtd.onblur=()=>setQtd(qtd.value);
+document.getElementById('gerar').onclick=gerar;
+document.getElementById('copiarTodos').onclick=()=>codigos.length&&copyText(codigos.join('\n'));
+document.getElementById('resultado').onclick=e=>{const b=e.target.closest('[data-code]');if(b)copyText(b.dataset.code)};
+</script>
+</body>
+</html>
